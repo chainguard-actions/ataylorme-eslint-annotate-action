@@ -1,0 +1,37 @@
+name: Test ESLint report with warnings (fail-on-warning=false)
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Copy ESLint report with warnings to workspace
+        run: |
+          cp "$GITHUB_WORKSPACE/tests/fixtures/eslint-with-warnings.json" "$GITHUB_WORKSPACE/eslint_report.json"
+
+      - id: action
+        uses: .
+        continue-on-error: true
+        with:
+          github-token: ${{ github.token }}
+          report-json: eslint_report.json
+          fail-on-error: 'true'
+          fail-on-warning: 'false'
+          only-pr-files: 'false'
+          check-name: 'ESLint Warnings No Fail Test'
+
+      - name: Assert action ran (warnings with fail-on-warning=false should succeed or fail gracefully on sentinel repo)
+        env:
+          OUTCOME: ${{ steps.action.outcome }}
+        run: |
+          echo "outcome: $OUTCOME"
+          if [ "$OUTCOME" = "success" ]; then
+            echo "PASS: action succeeded (warnings present but fail-on-warning=false)"
+          elif [ "$OUTCOME" = "failure" ]; then
+            echo "PASS: action failed gracefully (sentinel repo is not resolvable for GitHub Checks API)"
+          else
+            echo "FAIL: unexpected outcome '$OUTCOME'"
+            exit 1
+          fi

@@ -1,0 +1,22 @@
+[
+  {
+    "filePath": "/github/workspace/src/index.js",
+    "messages": [
+      {
+        "ruleId": "no-unused-vars",
+        "severity": 2,
+        "message": "'foo' is defined but never used.",
+        "line": 1,
+        "column": 5,
+        "nodeType": "Identifier",
+        "endLine": 1,
+        "endColumn": 8
+      }
+    ],
+    "errorCount": 1,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "var foo = 1;\n"
+  }
+]

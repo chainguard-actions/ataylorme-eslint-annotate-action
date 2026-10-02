@@ -1,0 +1,22 @@
+[
+  {
+    "filePath": "/github/workspace/src/index.js",
+    "messages": [
+      {
+        "ruleId": "no-console",
+        "severity": 1,
+        "message": "Unexpected console statement.",
+        "line": 2,
+        "column": 1,
+        "nodeType": "MemberExpression",
+        "endLine": 2,
+        "endColumn": 12
+      }
+    ],
+    "errorCount": 0,
+    "warningCount": 1,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "var x = 1;\nconsole.log(x);\n"
+  }
+]
