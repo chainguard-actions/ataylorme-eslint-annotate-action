@@ -1,0 +1,30 @@
+name: Test glob pattern for report-json
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      # Glob matches eslint-clean.json and eslint-warnings.json (not errors/invalid)
+      - id: action
+        uses: .
+        continue-on-error: true
+        with:
+          report-json: tests/fixtures/eslint-[cw]*.json
+          fail-on-error: 'false'
+      - name: Assert merged outputs
+        env:
+          OUTCOME: ${{ steps.action.outcome }}
+          ERRORS: ${{ steps.action.outputs.errorCount }}
+          WARNINGS: ${{ steps.action.outputs.warningCount }}
+        run: |
+          echo "outcome: $OUTCOME"
+          echo "errorCount: $ERRORS"
+          echo "warningCount: $WARNINGS"
+          if [ "$OUTCOME" != "success" ] && [ "$OUTCOME" != "failure" ]; then
+            echo "FAIL: unexpected outcome '$OUTCOME'"; exit 1
+          fi
+          if [ "$ERRORS" != "0" ]; then echo "FAIL: expected errorCount 0"; exit 1; fi
+          if [ "$WARNINGS" != "2" ]; then echo "FAIL: expected warningCount 2"; exit 1; fi
+          echo "PASS"

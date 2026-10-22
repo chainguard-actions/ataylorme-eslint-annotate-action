@@ -1,0 +1,25 @@
+[
+  {
+    "filePath": "src/warn.js",
+    "messages": [
+      {
+        "ruleId": "semi",
+        "severity": 1,
+        "message": "Missing semicolon.",
+        "line": 2,
+        "column": 5
+      },
+      {
+        "ruleId": "quotes",
+        "severity": 1,
+        "message": "Strings must use singlequote.",
+        "line": 4,
+        "column": 9
+      }
+    ],
+    "errorCount": 0,
+    "warningCount": 2,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 2
+  }
+]
