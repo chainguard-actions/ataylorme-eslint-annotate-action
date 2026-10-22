@@ -9,6 +9,7 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 | Version | Tag | Upstream commit |
 |---------|-----|-----------------|
 | 4.0.0 | [`4.0.0`](https://github.com/chainguard-actions/ataylorme-eslint-annotate-action/tree/4.0.0) | [`5a8d8ab`](https://github.com/ataylorme/eslint-annotate-action/commit/5a8d8ab89a57679e90c32750e0f382e9d8570750) |
+| v4.0.0-beta.1 | [`v4.0.0-beta.1`](https://github.com/chainguard-actions/ataylorme-eslint-annotate-action/tree/v4.0.0-beta.1) | [`03bec51`](https://github.com/ataylorme/eslint-annotate-action/commit/03bec515858fea50353ff60e3c537678826650a4) |
 
 ## Privacy
 
